@@ -8,9 +8,7 @@
  * Controller of the sappApp
  */
 angular.module('sappApp')
-  .controller('CategoriesCtrl', function ($scope, $state, pouchdb) {
-
-    var dbLocal = new PouchDB('stoveDb');
+  .controller('CategoriesCtrl', function ($scope, $state, PouchService) {
 
     $scope.data = {};
     $scope.data.categories = [];
@@ -24,23 +22,11 @@ angular.module('sappApp')
     };
 
     var _init = function () {
-      var data = [];
-      dbLocal.query(function(doc, emit) {
-        if (doc.view === 'stoveCategories') {
-          emit(doc);
-        }
-      }).then(function (result) {
-        _.map(result.rows, function (doc) {
-          console.log(doc)
-          data.push(doc.key);
-        });
-        $scope.data.categories = data;
+      PouchService.query('stoveCategories').then(function (res) {
+        $scope.data.categories = res;
         $scope.$apply();
-        console.log($scope.data.categories)
-        // handle result
-      }).catch(function (err) {
-        console.log(err);
-      });
+        console.log(res);
+      })
     };
 
     _init();
