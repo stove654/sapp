@@ -1,0 +1,26 @@
+{
+  "main": "index.html",
+  "name": "stove",
+  "description": "demo app of stove",
+  "version": "0.1.0",
+  "keywords": [
+    "demo",
+    "stove"
+  ],
+  "window": {
+    "title": "stove",
+    "icon": "link.png",
+    "toolbar": true,
+    "frame": true,
+    "position": "center",
+    "min_width": 1124,
+    "min_height": 640,
+    "width": 1124,
+    "height": 640
+  },
+  "webkit": {
+    "plugin": true
+  },
+  "dependencies": {
+  }
+}
