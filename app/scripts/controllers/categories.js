@@ -10,6 +10,8 @@
 angular.module('sappApp')
   .controller('CategoriesCtrl', function ($scope, $state, pouchdb) {
 
+    var dbLocal = new PouchDB('stoveDb');
+
     $scope.data = {};
     $scope.data.categories = [];
 
@@ -21,13 +23,29 @@ angular.module('sappApp')
       }
     };
 
-    var dbLocal = new PouchDB('stoveDb');
-    dbLocal.get('stoveCategories').then(function (doc) {
-      // handle doc
-      console.log(doc)
-    }).catch(function (err) {
-      console.log(err);
-    });
+    var _init = function () {
+      var data = [];
+      dbLocal.query(function(doc, emit) {
+        if (doc.view === 'stoveCategories') {
+          emit(doc);
+        }
+      }).then(function (result) {
+        _.map(result.rows, function (doc) {
+          console.log(doc)
+          data.push(doc.key);
+        });
+        $scope.data.categories = data;
+        $scope.$apply();
+        console.log($scope.data.categories)
+        // handle result
+      }).catch(function (err) {
+        console.log(err);
+      });
+    };
+
+    _init();
+
+
 
 /*
     var _init = function () {

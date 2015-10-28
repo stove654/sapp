@@ -15,7 +15,8 @@ angular
     'ui.router',
     'ui.bootstrap',
     'LocalStorageModule',
-    'pascalprecht.translate'
+    'pascalprecht.translate',
+    'toaster'
   ])
 
   .config(function($stateProvider, $urlRouterProvider, $httpProvider) {

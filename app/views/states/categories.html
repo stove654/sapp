@@ -21,7 +21,7 @@
                     <tr ng-repeat="item in data.categories" ng-click="openCategory(item._id)">
                         <td>{{$index}}</td>
                         <td>{{item.name}}</td>
-                        <td>{{item.descriptions}}</td>
+                        <td>{{item.description}}</td>
                         <td>
                             <span class="label bg-success" title="Active" ng-show="item.isPublic" translate="ACTIVE"></span>
                             <span class="label bg-default" title="Active" ng-hide="item.isPublic" translate="DISABLED"></span>

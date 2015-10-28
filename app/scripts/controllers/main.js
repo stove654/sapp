@@ -17,11 +17,4 @@ angular.module('sappApp')
     }).catch(function(err) {
       console.log(err);
     });
-
-    dbLocal.get('mydoc').then(function (doc) {
-      // handle doc
-      console.log(doc);
-    }).catch(function (err) {
-      console.log(err);
-    });
   });
